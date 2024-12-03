@@ -86,11 +86,6 @@ public class graphMain {
             Map<String, List<String>> breadthFirstTree = constructTree(convertToListString(breadthFirstOrder));
             printTree(breadthFirstTree);
             
-    
-            //for Depth tree, continue later
-            //System.out.println("\nDepth First Traversal Tree:");
-            //Map<String, List<String>> depthFirstTree = constructTree(depthFirstOrder);
-            //printTree(depthFirstTree);
         }
     
         //method to convert List<Character> into List<String>

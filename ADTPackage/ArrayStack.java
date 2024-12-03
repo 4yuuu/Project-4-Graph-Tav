@@ -1,5 +1,6 @@
 package ADTPackage;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 /**
@@ -92,6 +93,12 @@ private void checkIntegrity() {
 private void checkCapacity(int capacity) {
    if (capacity > MAX_CAPACITY)
    throw new IllegalStateException("Attempt to create a stack which exceeds capacity of " + MAX_CAPACITY);
+}
+
+@Override
+public void clear() {
+   // TODO Auto-generated method stub
+   throw new UnsupportedOperationException("Unimplemented method 'clear'");
 }
 
 } // end ArrayStack
