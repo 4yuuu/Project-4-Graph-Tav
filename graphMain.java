@@ -37,7 +37,7 @@ public class graphMain {
             }
         }
         public static void main(String args[]) {
-            GraphDFS graph = new GraphDFS(9);
+            graphMain graph = new graphMain(9);
             graph.addEdge('A', 'B');
             graph.addEdge('A', 'D');
             graph.addEdge('A', 'E');
@@ -73,7 +73,7 @@ public class graphMain {
         graphBFS.addEdge('C', 'B');
         graphBFS.addEdge('I', 'F');
     
-        System.out.println("Breadth First Traversal: ");
+        System.out.println("\nBreadth First Traversal: ");
         graphBFS.BFS('A');
             
     
@@ -82,7 +82,7 @@ public class graphMain {
     
     
             //create and display the trees
-            System.out.println("Breadth First Traversal Tree:");
+            System.out.println("\nBreadth First Traversal Tree:");
             Map<String, List<String>> breadthFirstTree = constructTree(convertToListString(breadthFirstOrder));
             printTree(breadthFirstTree);
             
