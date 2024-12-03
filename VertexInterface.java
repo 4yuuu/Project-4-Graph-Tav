@@ -1,4 +1,3 @@
-package GraphPackage;
 import java.util.Iterator;
 /**
    An interface for a vertex in a graph.

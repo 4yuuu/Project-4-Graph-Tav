@@ -1,5 +1,3 @@
-package GraphPackage;
-
 import java.util.*;
 
 public class graphMain {
@@ -29,21 +27,53 @@ public class graphMain {
         graph.addEdge("H", "I");
         graph.addEdge("C", "B");
         graph.addEdge("I", "F");
+
+        //perform BFS
+        GraphBFS graphBFS = new GraphBFS(9);
+
+    graphBFS.addEdge('A', 'B');
+    graphBFS.addEdge('A', 'D');
+    graphBFS.addEdge('A', 'E');
+    graphBFS.addEdge('B', 'E');
+    graphBFS.addEdge('D', 'G');
+    graphBFS.addEdge('E', 'F');
+    graphBFS.addEdge('E', 'H');
+    graphBFS.addEdge('G', 'H');
+    graphBFS.addEdge('F', 'C');
+    graphBFS.addEdge('F', 'H');
+    graphBFS.addEdge('H', 'I');
+    graphBFS.addEdge('C', 'B');
+    graphBFS.addEdge('I', 'F');
+
+    System.out.println("Breadth First Traversal: ");
+    graphBFS.BFS('A');
         
-        graph.depthFirstTrav("A");
+        //graph.depthFirstTrav("A");
 
         //get traversal orders of Breadth first and DepthFirst
-        List<String> breadthFirstOrder = graph.breadthFirstTrav("A");
-        List<String> depthFirstOrder = graph.depthFirstTrav("A");
+        List<Character> breadthFirstOrder = graphBFS.breadthFirstTrav('A');
+
+        //List<String> depthFirstOrder = graph.depthFirstTrav("A");
 
         //create and display the trees
         System.out.println("Breadth First Traversal Tree:");
-        Map<String, List<String>> breadthFirstTree = constructTree(breadthFirstOrder);
+        Map<String, List<String>> breadthFirstTree = constructTree(convertToListString(breadthFirstOrder));
         printTree(breadthFirstTree);
         
-        System.out.println("\nBreadth First Traversal Tree:");
-        Map<String, List<String>> depthFirstTree = constructTree(breadthFirstOrder);
-        printTree(breadthFirstTree);
+
+        //for Depth tree, continue later
+        //System.out.println("\nDepth First Traversal Tree:");
+        //Map<String, List<String>> depthFirstTree = constructTree(depthFirstOrder);
+        //printTree(depthFirstTree);
+    }
+
+    //method to convert List<Character> into List<String>
+    private static List<String> convertToListString(List<Character> list) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            result.add(String.valueOf(list.get(i)));
+        }
+        return result;
     }
     
     //Method to construct tree from traversal order
@@ -62,11 +92,11 @@ public class graphMain {
 
             //find nearest parent that hasn't filled the neighboring spot
             for (int j = i - 1; j >= 0; j--) {
-                String potentialParent = traversalOrder.get(j);
+                String possibleParent = traversalOrder.get(j);
 
                 //check if parent is already in the tree and child isn't added
-                if (tree.containsKey(potentialParent) && !added.contains(child)) {
-                    tree.get(potentialParent).add(child);
+                if (tree.containsKey(possibleParent) && !added.contains(child)) {
+                    tree.get(possibleParent).add(child);
                     tree.putIfAbsent(child, new ArrayList<>());
                     added.add(child);
                     break;
