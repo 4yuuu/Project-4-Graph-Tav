@@ -1,6 +1,6 @@
 package GraphPackage;
 
-public class graphMain {
+public class graphMain{
     public static void main (String[] args) {
         DirectedGraph<String> graph = new DirectedGraph<>();
 
