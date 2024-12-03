@@ -21,15 +21,16 @@ public class graphMain {
         //this method performs DFS (Depth First Traversal) and ecplores the graph starting at the specific vertex ('A')
         //Visits specific vertex and exploores unvisited neighbors using stack and continues until all the vertices that can be reached has been visited
         //Prints visited vertices in the order it was visited
-        public void DFS(char startVertexChar) {
+        public List<Character> DFS(char startVertexChar) {
             int startVertex = startVertexChar - 'A';
             boolean visited[] = new boolean[vertices]; //keeps track of visited verices
             Stack<Integer> stack = new Stack<>(); //creates stack to store vertices
+            List<Character> dfsTraverse = new ArrayList<>(); //List to store order of traversal
             stack.push(startVertex);
             while (!stack.isEmpty()) {
                 int vertex = stack.pop();
                 if (!visited[vertex]) { //marks the vertex as visited if the vertex has yet to be visited
-                    System.out.print(nodes[vertex] + " ");
+                    dfsTraverse.add(nodes[vertex]);
                     visited[vertex] = true;
                 }
                 for (int i = adjList[vertex].size() - 1; i >= 0; i--) { // Reverse order to mimic recursive DFS
@@ -61,8 +62,8 @@ public class graphMain {
             System.out.println(dfsOrder);
 
             Map<String, List<String>> dfsTree = constructTree(convertToListString(dfsOrder));
-        System.out.println("\nDepth First Traversal Tree:");
-        printTree(dfsTree);
+            System.out.println("\nDepth First Traversal Tree:");
+            printTree(dfsTree);
         
         //perform BFS
         GraphBFS graphBFS = new GraphBFS(9);
