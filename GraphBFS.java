@@ -4,6 +4,7 @@ public class GraphBFS {
     private int vertices;
     private LinkedList<Integer> adjList[];
     private char nodes[];
+@SuppressWarnings("unchecked")
 public GraphBFS(int v){
     vertices = v;
     adjList = new LinkedList[v];
