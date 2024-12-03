@@ -57,10 +57,13 @@ public class graphMain {
             graph.addEdge('H', 'I');
             graph.addEdge('C', 'B');
             graph.addEdge('I', 'F');
+
+            //print out the depth first traversal
             System.out.println("Depth First Traversal: ");
             List<Character> dfsOrder = graph.DFS('A');
             System.out.println(dfsOrder);
 
+            //print out the depth first traversal tree
             Map<String, List<String>> dfsTree = constructTree(convertToListString(dfsOrder));
             System.out.println("\nDepth First Traversal Tree:");
             printTree(dfsTree);
@@ -82,11 +85,9 @@ public class graphMain {
         graphBFS.addEdge('C', 'B');
         graphBFS.addEdge('I', 'F');
     
+        //print out the breadth first traversal
         System.out.println("\nBreadth First Traversal: ");
-        graphBFS.BFS('A');
-    
-            //create and display the trees
-            System.out.println("\nBreadth First Traversal Tree:");         
+        graphBFS.BFS('A');         
         }
     
         //method to convert List<Character> into List<String>
