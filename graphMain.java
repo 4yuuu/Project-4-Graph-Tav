@@ -78,13 +78,13 @@ public class graphMain {
             
     
             //get traversal orders of Breadth first
-            List<Character> breadthFirstOrder = graphBFS.breadthFirstTrav('A');
+            //List<Character> breadthFirstOrder = graphBFS.breadthFirstTrav('A');
     
     
             //create and display the trees
             System.out.println("\nBreadth First Traversal Tree:");
-            Map<String, List<String>> breadthFirstTree = constructTree(convertToListString(breadthFirstOrder));
-            printTree(breadthFirstTree);
+            //Map<String, List<String>> breadthFirstTree = constructTree(convertToListString(breadthFirstOrder));
+            //printTree(breadthFirstTree);
             
         }
     
