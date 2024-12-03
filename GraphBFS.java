@@ -1,6 +1,5 @@
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class GraphBFS {
     private int vertices;
@@ -23,9 +22,18 @@ public GraphBFS(int v){
       adjList[vIndex].add(eIndex);
     }
     public void BFS(char startVertexchar){
-        int startVertex = startVertexchar - 'A';
+        List<Character> traversalOrder = breadthFirstTrav(startVertexchar);
+            for (char vertex : traversalOrder) {
+                System.out.print(vertex + " ");
+            }
+        }
+
+    public List<Character> breadthFirstTrav(char startVertexChar) {
+        int startVertex = startVertexChar - 'A';
         boolean visited[] = new boolean[vertices];
         Queue<Integer> queue = new LinkedList<>();
+        List<Character> traversalOrder = new ArrayList<>();
+        
         visited[startVertex] = true;
         queue.add(startVertex);
 
@@ -42,26 +50,7 @@ public GraphBFS(int v){
                 }
             }
         }
+        return traversalOrder;
     }
-public static void main(String args[]){
-    GraphBFS graph = new GraphBFS(9);
-
-    graph.addEdge('A', 'B');
-    graph.addEdge('A', 'D');
-    graph.addEdge('A', 'E');
-    graph.addEdge('B', 'E');
-    graph.addEdge('D', 'G');
-    graph.addEdge('E', 'F');
-    graph.addEdge('E', 'H');
-    graph.addEdge('G', 'H');
-    graph.addEdge('F', 'C');
-    graph.addEdge('F', 'H');
-    graph.addEdge('H', 'I');
-    graph.addEdge('C', 'B');
-    graph.addEdge('I', 'F');
-
-    System.out.println("Breadth First Traversal: ");
-    graph.BFS('A');
-}
 
 }
