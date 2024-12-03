@@ -1,3 +1,4 @@
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -6,6 +7,7 @@ public class GraphBFS {
     private LinkedList<Integer> adjList[];
     private char nodes[];
 
+@SuppressWarnings("unchecked")
 public GraphBFS(int v){
     vertices = v;
     adjList = new LinkedList[v];
@@ -63,5 +65,3 @@ public static void main(String args[]){
 }
 
 }
-
-
