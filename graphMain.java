@@ -17,15 +17,17 @@ public class graphMain {
             int eIndex = e - 'A';
             adjList[vIndex].add(eIndex);
         }
-        public void DFS(char startVertexChar) {
+        public List<Character> DFS(char startVertexChar) {
             int startVertex = startVertexChar - 'A';
             boolean visited[] = new boolean[vertices];
             Stack<Integer> stack = new Stack<>();
+            List<Character> dfsTraverse = new ArrayList<>();
+
             stack.push(startVertex);
             while (!stack.isEmpty()) {
                 int vertex = stack.pop();
                 if (!visited[vertex]) {
-                    System.out.print(nodes[vertex] + " ");
+                    dfsTraverse.add(nodes[vertex]);
                     visited[vertex] = true;
                 }
                 for (int i = adjList[vertex].size() - 1; i >= 0; i--) { // Reverse order to mimic recursive DFS
@@ -35,6 +37,7 @@ public class graphMain {
                     }
                 }
             }
+            return dfsTraverse;
         }
         public static void main(String args[]) {
             graphMain graph = new graphMain(9);
@@ -52,9 +55,12 @@ public class graphMain {
             graph.addEdge('C', 'B');
             graph.addEdge('I', 'F');
             System.out.println("Depth First Traversal: ");
-            graph.DFS('A');
+            List<Character> dfsOrder = graph.DFS('A');
+            System.out.println(dfsOrder);
 
-        
+            Map<String, List<String>> dfsTree = constructTree(convertToListString(dfsOrder));
+        System.out.println("\nDepth First Traversal Tree:");
+        printTree(dfsTree);
         
         //perform BFS
         GraphBFS graphBFS = new GraphBFS(9);
@@ -75,17 +81,9 @@ public class graphMain {
     
         System.out.println("\nBreadth First Traversal: ");
         graphBFS.BFS('A');
-            
-    
-            //get traversal orders of Breadth first
-            //List<Character> breadthFirstOrder = graphBFS.breadthFirstTrav('A');
-    
     
             //create and display the trees
-            System.out.println("\nBreadth First Traversal Tree:");
-            //Map<String, List<String>> breadthFirstTree = constructTree(convertToListString(breadthFirstOrder));
-            //printTree(breadthFirstTree);
-            
+            System.out.println("\nBreadth First Traversal Tree:");         
         }
     
         //method to convert List<Character> into List<String>
