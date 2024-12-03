@@ -4,6 +4,7 @@ public class graphMain {
         private int vertices;
         private LinkedList<Integer> adjList[];
         private char nodes[];
+        @SuppressWarnings("unchecked")
         public graphMain(int v) {
             vertices = v;
             adjList = new LinkedList[v];
@@ -17,29 +18,30 @@ public class graphMain {
             int eIndex = e - 'A';
             adjList[vIndex].add(eIndex);
         }
-        public List<Character> DFS(char startVertexChar) {
+        //this method performs DFS (Depth First Traversal) and ecplores the graph starting at the specific vertex ('A')
+        //Visits specific vertex and exploores unvisited neighbors using stack and continues until all the vertices that can be reached has been visited
+        //Prints visited vertices in the order it was visited
+        public void DFS(char startVertexChar) {
             int startVertex = startVertexChar - 'A';
-            boolean visited[] = new boolean[vertices];
-            Stack<Integer> stack = new Stack<>();
-            List<Character> dfsTraverse = new ArrayList<>();
-
+            boolean visited[] = new boolean[vertices]; //keeps track of visited verices
+            Stack<Integer> stack = new Stack<>(); //creates stack to store vertices
             stack.push(startVertex);
             while (!stack.isEmpty()) {
                 int vertex = stack.pop();
-                if (!visited[vertex]) {
-                    dfsTraverse.add(nodes[vertex]);
+                if (!visited[vertex]) { //marks the vertex as visited if the vertex has yet to be visited
+                    System.out.print(nodes[vertex] + " ");
                     visited[vertex] = true;
                 }
                 for (int i = adjList[vertex].size() - 1; i >= 0; i--) { // Reverse order to mimic recursive DFS
                     int neighbor = adjList[vertex].get(i);
-                    if (!visited[neighbor]) {
+                    if (!visited[neighbor]) { //push unvisied neighbor onto stack
                         stack.push(neighbor);
                     }
                 }
             }
             return dfsTraverse;
         }
-        public static void main(String args[]) {
+        public static void main(String args[]) { //creates graph with 9 vertices (A to I) and performs DFS starting from the vertex 'A'
             graphMain graph = new graphMain(9);
             graph.addEdge('A', 'B');
             graph.addEdge('A', 'D');
@@ -87,6 +89,7 @@ public class graphMain {
         }
     
         //method to convert List<Character> into List<String>
+        @SuppressWarnings("unused")
         private static List<String> convertToListString(List<Character> list) {
             List<String> result = new ArrayList<>();
             for (int i = 0; i < list.size(); i++) {
@@ -96,6 +99,7 @@ public class graphMain {
         }
         
         //Method to construct tree from traversal order
+        @SuppressWarnings("unused")
         private static Map<String, List<String>> constructTree(List<String> traversalOrder) {
             Map<String, List<String>> tree = new HashMap<>();
             Set<String> added = new HashSet<>();
@@ -127,6 +131,7 @@ public class graphMain {
     
     
         //Method to print tree
+        @SuppressWarnings("unused")
         private static void printTree(Map<String, List<String>> tree) {
             for (String parent : tree.keySet()) {
                 System.out.print(parent + " ->");
